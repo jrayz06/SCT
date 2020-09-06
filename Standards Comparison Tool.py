@@ -1,4 +1,5 @@
 
+
 import easygui
 import os
 
@@ -226,6 +227,183 @@ def Click3():
         ##Start writing out
 
         # State, Doc, Year, Grade, 2020 GUID, 2020 Parent GUID, 2020 Stand Desc, 2014 Stand Desc, 2014 GUID, 2014 Parent GUID
+
+        matchedStd1 = [];
+        matchedStd2 = [];
+        noMatch = [];
+        noMatch2  = [];
+
+        i=0;
+        x=0;
+        a = 50;
+        b = False;
+        #print("test");
+        if(len(stand1) > len(stand2)):
+                
+            #print("test1");
+            while i < len(stand1):
+                #print(len(stand1));
+                a = 50;
+                x = 0;
+                b = False;
+                while x < len(stand2):
+                    #print("ffe");
+                    #print(stand1[i].desc + " compared to " + stand2[x].desc);
+                    if(stand1[i].desc == stand2[x].desc):
+                        if(b == False):        
+                                #print("match");
+                                matchedStd1.append(stand1[i]);
+                                matchedStd2.append(stand2[x]);
+                                a = 101;
+                                b = True;
+                        else:
+                                matchedStd1[len(matchedStd1)-1] = stand1[i];
+                                matchedStd2[len(matchedStd2)-1] = stand2[x];
+                                a = 101;
+                    elif(fuzz.ratio(stand1[i].desc.lower(), stand2[x].desc.lower()) > a):
+                        if(not(stand2[x] in matchedStd2)):
+                                
+                                #print("yup");
+                                if(b == False):
+                                        matchedStd1.append(stand1[i]);
+                                        matchedStd2.append(stand2[x]);
+                                        b = True;
+                                elif(b == True):
+                                        matchedStd1[len(matchedStd1)-1] = stand1[i];
+                                        matchedStd2[len(matchedStd2)-1] = stand2[x];
+                                        a = fuzz.ratio(stand1[i].desc.lower(), stand2[x].desc.lower());
+                    elif(x == len(stand2)-1 and  b == False):
+                        #print("none");
+                        print("NM");
+                        noMatch.append(stand1[i]);
+                    x += 1;
+                #print(i);
+                i +=1;
+
+            while i < len(stand2):
+                #print(len(stand1));
+                a = 50;
+                x = 0;
+                b = False;
+                while x < len(stand1):
+                    #print("ffe");
+                    #print(stand2[i].desc + " compared to " + stand1[x].desc);
+                    if(stand2[i].desc == stand1[x].desc):
+                        if(b == False):
+                                #print("match");
+                                #matchedStd1.append(stand2[i]);
+                                #matchedStd2.append(stand1[x]);
+                                a = 101;
+                                b = True;
+                        else:
+                                a = 101;
+                    elif(fuzz.ratio(stand2[i].desc.lower(), stand1[x].desc.lower()) > a):
+                        if(not(stand1[x] in matchedStd2)):
+                                #print("yup");
+                                if(b == False):
+                                        #matchedStd1.append(stand2[i]);
+                                        #matchedStd2.append(stand1[x]);
+                                        b = True;
+                                elif(b == True):
+                                        #matchedStd1[len(matchedStd1)-1] = stand2[i];
+                                        #matchedStd2[len(matchedStd2)-1] = stand1[x];
+                                        a = fuzz.ratio(stand2[i].desc.lower(), stand1[x].desc.lower());
+                    elif(x == len(stand1) and  b == False):
+                        #print("none");
+                        noMatch2.append(stand2[i]);
+                    x += 1;
+                print(i);
+                i +=1;
+
+        else:
+            while i < len(stand2):
+                #print(len(stand1));
+                a = 50;
+                x = 0;
+                b = False;
+                while x < len(stand1):
+                    #print("ffe");
+                    #print(stand1[i].desc + " compared to " + stand2[x].desc);
+                    if(stand2[i].desc == stand1[x].desc):
+                        if(b == False):        
+                                #print("match");
+                                matchedStd1.append(stand2[i]);
+                                matchedStd2.append(stand1[x]);
+                                a = 101;
+                                b = True;
+                        else:
+                                matchedStd1[len(matchedStd1)-1] = stand2[i];
+                                matchedStd2[len(matchedStd2)-1] = stand1[x];
+                                a = 101;
+                    elif(fuzz.ratio(stand2[i].desc.lower(), stand1[x].desc.lower()) > a):
+                        if(not(stand1[x] in matchedStd2)):
+                                
+                                #print("yup");
+                                if(b == False):
+                                        matchedStd1.append(stand2[i]);
+                                        matchedStd2.append(stand1[x]);
+                                        b = True;
+                                elif(b == True):
+                                        matchedStd1[len(matchedStd1)-1] = stand2[i];
+                                        matchedStd2[len(matchedStd2)-1] = stand1[x];
+                                        a = fuzz.ratio(stand2[i].desc.lower(), stand1[x].desc.lower());
+                    elif(x == len(stand1)-1 and  b == False):
+                        #print("none");
+                        print("NM");
+                        noMatch.append(stand2[i]);
+                    x += 1;
+                #print(i);
+                i +=1;
+
+            while i < len(stand1):
+                #print(len(stand1));
+                a = 50;
+                x = 0;
+                b = False;
+                while x < len(stand2):
+                    #print("ffe");
+                    #print(stand2[i].desc + " compared to " + stand1[x].desc);
+                    if(stand1[i].desc == stand2[x].desc):
+                        if(b == False):
+                                #print("match");
+                                #matchedStd1.append(stand2[i]);
+                                #matchedStd2.append(stand1[x]);
+                                a = 101;
+                                b = True;
+                        else:
+                                a = 101;
+                    elif(fuzz.ratio(stand1[i].desc.lower(), stand2[x].desc.lower()) > a):
+                        if(not(stand1[x] in matchedStd2)):
+                                #print("yup");
+                                if(b == False):
+                                        #matchedStd1.append(stand2[i]);
+                                        #matchedStd2.append(stand1[x]);
+                                        b = True;
+                                elif(b == True):
+                                        #matchedStd1[len(matchedStd1)-1] = stand2[i];
+                                        #matchedStd2[len(matchedStd2)-1] = stand1[x];
+                                        a = fuzz.ratio(stand1[i].desc.lower(), stand2[x].desc.lower());
+                    elif(x == len(stand2) and  b == False):
+                        #print("none");
+                        noMatch2.append(stand1[i]);
+                    x += 1;
+                print(i);
+                i +=1;
+                
+        #print(len(matchedStd1));
+        i = 0;
+        while i < len(matchedStd1):
+                #print(matchedStd1[i].desc + " is aligned with " + matchedStd2[i].desc);
+                i += 1;
+        i = 0;
+        while i < len(noMatch):
+                print(noMatch[i].desc + " has no matches");
+                i += 1;
+        i = 0;
+        while i < len(noMatch2):
+                print(noMatch2[i].desc + "2 has no matches");
+                i += 1;
+                
         
         with open(state1 + " " + year1 + " " + grade1 + " " + " vs " + state2 + " " + year2 + " " + grade2 + ".csv", 'w', encoding='utf-8') as csvfile:
                 i = 0;
@@ -267,18 +445,28 @@ def Click3():
                 wr.writerow(['\n']);
                 wr.writerow(["State", "Grade", year1 + " GUID", year1 + " Parent GUID", year1 + " Standard ", year1 + " Description", year2 + " Description", year2 + " Standard ", year2 + " GUID", year2 + " Parent GUID"]);
                 if len(stand1) >= len(stand2):
-                        while i < len(stand1):
+                        while i < len(matchedStd1):
                                 if(i >= len(stand2)):
                                         wr.writerow(['\n']);
-                                        wr.writerow([state1, grade1, stand1[i].GUID, stand1[i].pGUID, stand1[i].std, stand1[i].desc, "N/A", "N/A", "N/A", "N/A", "N/A"]);
+                                        wr.writerow([state1, grade1, matchedStd1[i].GUID, matchedStd1[i].pGUID, matchedStd1[i].std,  matchedStd1[i].desc, "N/A", "N/A", "N/A", "N/A", "N/A"]);
                                 else:
                                         wr.writerow(['\n']);
-                                        wr.writerow([state1, grade1, stand1[i].GUID, stand1[i].pGUID, stand1[i].std, stand1[i].desc, stand2[i].desc, stand2[i].std, stand2[i].GUID, stand2[i].pGUID]);
+                                        wr.writerow([state1, grade1, matchedStd1[i].GUID, matchedStd1[i].pGUID, matchedStd1[i].std, matchedStd1[i].desc, matchedStd2[i].desc, matchedStd2[i].std, matchedStd2[i].GUID, matchedStd2[i].pGUID]);
                                 i += 1;
+                        i = 0;
+                        while i < len(noMatch):
+                                        wr.writerow(['\n']);
+                                        wr.writerow([state1, grade1, noMatch[i].GUID, noMatch[i].pGUID, noMatch[i].std,  noMatch[i].desc, "N/A", "N/A", "N/A", "N/A", "N/A"]);
+                                        i += 1;
+                        i = 0;
+                        while i < len(noMatch2):
+                                        wr.writerow(['\n']);
+                                        wr.writerow([state1, grade1, "N/A", "N/A", "N.A", "N/A", noMatch2[i].desc, noMatch2[i].std, noMatch2[i].GUID, noMatch2[i].pGUID]);
+                                        i += 1;
 
 
                 else:
-                        while i < len(stand2):
+                        while i < len(matchedStd2):
                                 if(i >= len(stand1)):
                                         wr.writerow(['\n']);
                                         wr.writerow([state1, grade1, "N/A", "N/A", "N.A", "N/A", stand2[i].desc, stand2[i].std, stand2[i].GUID, stand2[i].pGUID]);
@@ -286,6 +474,19 @@ def Click3():
                                         wr.writerow(['\n']);
                                         wr.writerow([state1, grade1, stand1[i].GUID, stand1[i].pGUID, stand1[i].std, stand1[i].desc, stand2[i].desc, stand2[i].std, stand2[i].GUID, stand2[i].pGUID]);
                                 i += 1;
+                        i = 0;
+                        while i < len(noMatch):
+                                        wr.writerow(['\n']);
+                                        wr.writerow([state1, grade1, noMatch[i].GUID, noMatch[i].pGUID, noMatch[i].std,  noMatch[i].desc, "N/A", "N/A", "N/A", "N/A", "N/A"]);
+                                        i += 1;
+                        i = 0;
+                        while i < len(noMatch2):
+                                        wr.writerow(['\n']);
+                                        wr.writerow([state1, grade1, "N/A", "N/A", "N.A", "N/A", noMatch2[i].desc, noMatch2[i].std, noMatch2[i].GUID, noMatch2[i].pGUID]);
+                                        i += 1;
+
+
+
 
         messagebox.showinfo(title="Report Complete", message="Your report has successfully been created at " + os.getcwd() + "\\" + state1 + " " + year1 + " " + grade1 + " " + " vs " + state2 + " " + year2 + " " + grade2 + ".csv. ");
 
