@@ -1,9 +1,9 @@
-#Standards Comparison Tool
+# Standards Comparison Tool
 
 
-##Changelog:
+## Changelog:
 
-###8/24-8/30###
+### 8/24-8/30 
 
 **Major Changes:**
 
@@ -18,7 +18,7 @@
 - Added toolbar icon to the Windows executable
 - Changed the backslash to a forward slash on MacOS version to accurately represent the path
 
-###8/31 - 9/6:
+### 8/31 - 9/6:
 
 **Major Changes:**
 
