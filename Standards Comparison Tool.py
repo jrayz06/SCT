@@ -1,11 +1,3 @@
-##Find which algorithm is the best, and incorporate the python dictionary counter from the original algorithm
-##to keep track of word changes. 
-##
-##Levenshtein is decided to be the best algorithm.
-##TO DO:
-##Track which standards did not change (need something similar to class)
-##Possibly implement something similar to highlighting similar wording seen on
-##the Ontario call 
 
 import easygui
 import os
