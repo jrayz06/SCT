@@ -35,7 +35,7 @@ def Click1():
         if(firstFile is not None):
                 
                 while(firstFile == secondFile):
-                        print("The file located at " + firstFile + " was specified twice. Please select a different file");
+                        #print("The file located at " + firstFile + " was specified twice. Please select a different file");
                         secondFile = easygui.fileopenbox(msg='Please select the first CSV file to be compared.',
                             title='Select CSV file',default=r'c:\Users\%username%\*.csv',
                             filetypes='*.csv');
@@ -58,7 +58,7 @@ def Click2():
                     filetypes='*.csv');
         if(secondFile is not None):
                 while(firstFile == secondFile):
-                        print("The file located at " + firstFile + " was specified twice. Please select a different file");
+                        #print("The file located at " + firstFile + " was specified twice. Please select a different file");
                         secondFile = easygui.fileopenbox(msg='Please select the first CSV file to be compared.',
                             title='Select CSV file',default=r'c:\Users\%username%\*.csv',
                             filetypes='*.csv');
@@ -274,7 +274,7 @@ def Click3():
                                         a = fuzz.ratio(stand1[i].desc.lower(), stand2[x].desc.lower());
                     elif(x == len(stand2)-1 and  b == False):
                         #print("none");
-                        print("NM");
+                        #print("NM");
                         noMatch.append(stand1[i]);
                     x += 1;
                 #print(i);
@@ -312,7 +312,7 @@ def Click3():
                         #print("none");
                         noMatch2.append(stand2[i]);
                     x += 1;
-                print(i);
+                #print(i);
                 i +=1;
 
         else:
@@ -349,7 +349,7 @@ def Click3():
                                         a = fuzz.ratio(stand2[i].desc.lower(), stand1[x].desc.lower());
                     elif(x == len(stand1)-1 and  b == False):
                         #print("none");
-                        print("NM");
+                        #print("NM");
                         noMatch.append(stand2[i]);
                     x += 1;
                 #print(i);
@@ -397,11 +397,11 @@ def Click3():
                 i += 1;
         i = 0;
         while i < len(noMatch):
-                print(noMatch[i].desc + " has no matches");
+                #print(noMatch[i].desc + " has no matches");
                 i += 1;
         i = 0;
         while i < len(noMatch2):
-                print(noMatch2[i].desc + "2 has no matches");
+                #print(noMatch2[i].desc + "2 has no matches");
                 i += 1;
                 
         
