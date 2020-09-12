@@ -26,48 +26,58 @@ def Click1():
         global secondFile;
         global a;
         global b;
+        c = True;
         global Button3;
         global confirmLabel;
         global Button1;
-        firstFile = easygui.fileopenbox(msg='Please select the first CSV file to be compared.',
-                    title='Select CSV file',default=r'c:\Users\%username%\*.csv',
-                    filetypes='*.csv');
-        if(firstFile is not None):
-                
-                while(firstFile == secondFile):
-                        #print("The file located at " + firstFile + " was specified twice. Please select a different file");
-                        secondFile = easygui.fileopenbox(msg='Please select the first CSV file to be compared.',
+        while(c == True):
+                firstFile = easygui.fileopenbox(msg='Please select the first CSV file to be compared.',
                             title='Select CSV file',default=r'c:\Users\%username%\*.csv',
                             filetypes='*.csv');
-                a = True;
-                if(a == b and a == True):
-                        Button3["state"]=NORMAL;
-                        head1, tail1 = os.path.split(firstFile);
-                        head2,tail2 = os.path.split(secondFile);
-                        ConfirmLabel.config(text="Comparing files : " + tail1 + " and " + tail2);
+                if(firstFile is not None):
+                        c = False;
+                        while(firstFile == secondFile):
+                                #print("The file located at " + firstFile + " was specified twice. Please select a different file");
+                                secondFile = easygui.fileopenbox(msg='Please select the first CSV file to be compared.',
+                                    title='Select CSV file',default=r'c:\Users\%username%\*.csv',
+                                    filetypes='*.csv');
+                        a = True;
+                        if(a == b and a == True):
+                                Button3["state"]=NORMAL;
+                                head1, tail1 = os.path.split(firstFile);
+                                head2,tail2 = os.path.split(secondFile);
+                                ConfirmLabel.config(text="Comparing files : " + tail1 + " and " + tail2);
 
+                else:
+                        messagebox.showinfo(title="Error: No selected file.", message = "You must select a file to proceed.");
 def Click2():
         global secondFile;
         global firstFile;
         global a;
         global b;
+        c = True;
         global Button3;
         global ConfirmLabel;
-        secondFile = easygui.fileopenbox(msg='Please select the first CSV file to be compared.',
-                    title='Select CSV file',default=r'c:\Users\%username%\*.csv',
-                    filetypes='*.csv');
-        if(secondFile is not None):
-                while(firstFile == secondFile):
-                        #print("The file located at " + firstFile + " was specified twice. Please select a different file");
-                        secondFile = easygui.fileopenbox(msg='Please select the first CSV file to be compared.',
+        while(c == True):
+                secondFile = easygui.fileopenbox(msg='Please select the first CSV file to be compared.',
                             title='Select CSV file',default=r'c:\Users\%username%\*.csv',
                             filetypes='*.csv');
-                b = True;
-                if(a == b and a == True):
-                        Button3["state"]=NORMAL;
-                        head1, tail1 = os.path.split(firstFile);
-                        head2,tail2 = os.path.split(secondFile);
-                        ConfirmLabel.config(text="Comparing files : " + tail1 + " and " + tail2);
+                if(secondFile is not None):
+                        c = False;
+                        while(firstFile == secondFile):
+                                #print("The file located at " + firstFile + " was specified twice. Please select a different file");
+                                secondFile = easygui.fileopenbox(msg='Please select the first CSV file to be compared.',
+                                    title='Select CSV file',default=r'c:\Users\%username%\*.csv',
+                                    filetypes='*.csv');
+                        b = True;
+                        if(a == b and a == True):
+                                Button3["state"]=NORMAL;
+                                head1, tail1 = os.path.split(firstFile);
+                                head2,tail2 = os.path.split(secondFile);
+                                ConfirmLabel.config(text="Comparing files : " + tail1 + " and " + tail2);
+
+                else:
+                        messagebox.showinfo(title="Error: No selected file.", message = "You must select a file to proceed.");
 def Click3():
 
 
@@ -418,32 +428,32 @@ def Click3():
                 wr.writerow(["The word removed the most times (" + str(mostAdded) + ") was: " + mostRemoveds]);
                 wr.writerow(['\n']);
                 
-                while i < len(stand1) and  i < len(stand2):
-                        if(stand1[i].desc == stand2[i].desc):
-                                wr.writerow([stand1[i].year + "'s " + stand1[i].std + " is aligned with " + stand2[i].year + "'s " + stand2[i].std + " on line " + str(stand1[i].lineNum) + "."]);
-                                wr.writerow(['\n']);
-                        elif(fuzz.ratio(stand1[i].desc.lower(), stand2[i].desc.lower()) >= 80):
-                                prList.append(stand1[i].year + "'s " + stand1[i].std + " is mostly similar to " + stand2[i].year + "'s " + stand2[i].std + " on line " + str(stand1[i].lineNum) + ".");
-                        i += 1;
-
-                i = 0;
-
-                while i < len(prList):
-                        wr.writerow([prList[i]]);
-                        wr.writerow(['\n']);
-                        i += 1;
-
-                while i < len(stand1) and i < len(stand2):
-                        if(stand1[i].std != stand2[i].std):
-                                wr.writerow([stand1[i].year + "'s " + stand1[i].std + " was changed to " + stand2[i].std + " in " + stand2[i].year]);
-                                wr.writerow(['\n']);
-                        i += 1;
-                i = 0;
+##                while i < len(stand1) and  i < len(stand2):
+##                        if(stand1[i].desc == stand2[i].desc):
+##                                wr.writerow([stand1[i].year + "'s " + stand1[i].std + " is aligned with " + stand2[i].year + "'s " + stand2[i].std + " on line " + str(stand1[i].lineNum) + "."]);
+##                                wr.writerow(['\n']);
+##                        elif(fuzz.ratio(stand1[i].desc.lower(), stand2[i].desc.lower()) >= 80):
+##                                prList.append(stand1[i].year + "'s " + stand1[i].std + " is mostly similar to " + stand2[i].year + "'s " + stand2[i].std + " on line " + str(stand1[i].lineNum) + ".");
+##                        i += 1;
+##
+##                i = 0;
+##
+##                while i < len(prList):
+##                        wr.writerow([prList[i]]);
+##                        wr.writerow(['\n']);
+##                        i += 1;
+##
+##                while i < len(stand1) and i < len(stand2):
+##                        if(stand1[i].std != stand2[i].std):
+##                                wr.writerow([stand1[i].year + "'s " + stand1[i].std + " was changed to " + stand2[i].std + " in " + stand2[i].year]);
+##                                wr.writerow(['\n']);
+##                        i += 1;
+##                i = 0;
                 #Generate header row
                 wr.writerow(['\n']);
                 wr.writerow(['\n']);
                 wr.writerow(['\n']);
-                wr.writerow(["State", "Grade", year1 + " GUID", year1 + " Parent GUID", year1 + " Standard ", year1 + " Description", year2 + " Description", year2 + " Standard ", year2 + " GUID", year2 + " Parent GUID"]);
+                wr.writerow(["State", "Grade", year1 + " GUID", year1 + " Parent GUID", year1 + " Standard ", year1 + " Description", year2 + " Description", year2 + " Standard ", year2 + " GUID", year2 + " Parent GUID", "New/Removed Standard?", "Standard Name Change", "Individual Alignment"]);
                 if len(stand1) >= len(stand2):
                         while i < len(matchedStd1):
                                 if(i >= len(stand2)):
@@ -451,17 +461,20 @@ def Click3():
                                         wr.writerow([state1, grade1, matchedStd1[i].GUID, matchedStd1[i].pGUID, matchedStd1[i].std,  matchedStd1[i].desc, "N/A", "N/A", "N/A", "N/A", "N/A"]);
                                 else:
                                         wr.writerow(['\n']);
-                                        wr.writerow([state1, grade1, matchedStd1[i].GUID, matchedStd1[i].pGUID, matchedStd1[i].std, matchedStd1[i].desc, matchedStd2[i].desc, matchedStd2[i].std, matchedStd2[i].GUID, matchedStd2[i].pGUID]);
+                                        if(matchedStd1[i].std == matchedStd2[i].std):
+                                                wr.writerow([state1, grade1, matchedStd1[i].GUID, matchedStd1[i].pGUID, matchedStd1[i].std, matchedStd1[i].desc, matchedStd2[i].desc, matchedStd2[i].std, matchedStd2[i].GUID, matchedStd2[i].pGUID, "N/A", "No Change", fuzz.ratio(matchedStd1[i].desc, matchedStd2[i].desc)]);
+                                        else:
+                                                wr.writerow([state1, grade1, matchedStd1[i].GUID, matchedStd1[i].pGUID, matchedStd1[i].std, matchedStd1[i].desc, matchedStd2[i].desc, matchedStd2[i].std, matchedStd2[i].GUID, matchedStd2[i].pGUID, "N/A", matchedStd1[i].std + " became " + matchedStd2[i].std, fuzz.ratio(matchedStd1[i].desc, matchedStd2[i].desc)]);
                                 i += 1;
                         i = 0;
                         while i < len(noMatch):
                                         wr.writerow(['\n']);
-                                        wr.writerow([state1, grade1, noMatch[i].GUID, noMatch[i].pGUID, noMatch[i].std,  noMatch[i].desc, "N/A", "N/A", "N/A", "N/A", "N/A"]);
+                                        wr.writerow([state1, grade1, noMatch[i].GUID, noMatch[i].pGUID, noMatch[i].std,  noMatch[i].desc, "N/A", "N/A", "N/A", "N/A", "Removed", "N/A", "N/A"]);
                                         i += 1;
                         i = 0;
                         while i < len(noMatch2):
                                         wr.writerow(['\n']);
-                                        wr.writerow([state1, grade1, "N/A", "N/A", "N.A", "N/A", noMatch2[i].desc, noMatch2[i].std, noMatch2[i].GUID, noMatch2[i].pGUID]);
+                                        wr.writerow([state1, grade1, "N/A", "N/A", "N.A", "N/A", noMatch2[i].desc, noMatch2[i].std, noMatch2[i].GUID, noMatch2[i].pGUID], "New","N/A","N/A");
                                         i += 1;
 
 
@@ -472,24 +485,24 @@ def Click3():
                                         wr.writerow([state1, grade1, "N/A", "N/A", "N.A", "N/A", stand2[i].desc, stand2[i].std, stand2[i].GUID, stand2[i].pGUID]);
                                 else:
                                         wr.writerow(['\n']);
-                                        wr.writerow([state1, grade1, stand1[i].GUID, stand1[i].pGUID, stand1[i].std, stand1[i].desc, stand2[i].desc, stand2[i].std, stand2[i].GUID, stand2[i].pGUID]);
+                                        wr.writerow([state1, grade1, matchedStd1[i].GUID, matchedStd1[i].pGUID, matchedStd1[i].std, matchedStd1[i].desc, matchedStd2[i].desc, matchedStd2[i].std, matchedStd2[i].GUID, matchedStd2[i].pGUID, "N/A", matchedStd1[i].std + " became " + matchedStd2[i].std, fuzz.ratio(matchedStd1[i].desc, matchedStd2[i].desc)]);
                                 i += 1;
                         i = 0;
                         while i < len(noMatch):
                                         wr.writerow(['\n']);
-                                        wr.writerow([state1, grade1, noMatch[i].GUID, noMatch[i].pGUID, noMatch[i].std,  noMatch[i].desc, "N/A", "N/A", "N/A", "N/A", "N/A"]);
+                                        wr.writerow([state1, grade1, noMatch[i].GUID, noMatch[i].pGUID, noMatch[i].std,  noMatch[i].desc, "N/A", "N/A", "N/A", "N/A", "Removed", "N/A", "N/A"]);
                                         i += 1;
                         i = 0;
                         while i < len(noMatch2):
                                         wr.writerow(['\n']);
-                                        wr.writerow([state1, grade1, "N/A", "N/A", "N.A", "N/A", noMatch2[i].desc, noMatch2[i].std, noMatch2[i].GUID, noMatch2[i].pGUID]);
+                                        wr.writerow([state1, grade1, "N/A", "N/A", "N.A", "N/A", noMatch2[i].desc, noMatch2[i].std, noMatch2[i].GUID, noMatch2[i].pGUID], "New","N/A","N/A");
                                         i += 1;
 
 
 
 
-        messagebox.showinfo(title="Report Complete", message="Your report has successfully been created at " + os.getcwd() + "\\" + state1 + " " + year1 + " " + grade1 + " " + " vs " + state2 + " " + year2 + " " + grade2 + ".csv. ");
-
+        if(messagebox.askyesno(title="Report Complete", message="Your report has successfully been created at " + os.getcwd() + "\\" + state1 + " " + year1 + " " + grade1 + " " + " vs " + state2 + " " + year2 + " " + grade2 + ".csv. Would you like to attempt to open this file in Excel?")):        
+                os.startfile(state1 + " " + year1 + " " + grade1 + " " + " vs " + state2 + " " + year2 + " " + grade2 + ".csv");
 
 root = Tk();
 photo = """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"""
